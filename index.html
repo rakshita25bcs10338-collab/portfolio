@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rakshita’s Portfolio</title>
+
+  <style>
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+    body {
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      color: #f5f5f5;
+      scroll-behavior: smooth;
+    }
+
+    
+    header {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      color: white;
+      border-bottom-left-radius: 40% 10%;
+      border-bottom-right-radius: 40% 10%;
+      animation: slideDown 1.8s ease-in-out ;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      animation: gentleFloat 3s ease-in-out infinite alternate;
+    }
+
+    nav { margin-top: 20px; }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover { color: #00ffff; text-shadow: 0 0 8px #00ffff; }
+
+
+    section {
+      max-width: 850px;
+      margin: 70px auto;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 40px 25px;
+      box-shadow: 0 0 25px rgba(0,255,255,0.15);
+      animation: fadeInUp 1s ease-in-out;
+      transition: transform 0.3s;
+    }
+    section:hover { transform: translateY(-8px); }
+
+    section h2 {
+      text-align: center;
+      color: #00ffff;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    #about { text-align: center; }
+    #about img {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 15px #00ffff;
+      margin-bottom: 20px;
+      transition: transform 0.4s ease-in-out;
+    }
+    #about img:hover { transform: rotate(3deg) scale(1.05); }
+    #about p { margin: 10px auto; max-width: 650px; line-height: 1.8; color: #ddd; }
+
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .skill-card {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      perspective: 800px;
+      cursor: pointer;
+    }
+
+    .skill-card input { display: none; }
+
+    .skill-card .front,
+    .skill-card .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backface-visibility: hidden;
+      transition: transform 0.8s ease;
+      box-shadow: 0 0 18px rgba(0,255,255,0.2);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .skill-card .front {
+      background: linear-gradient(45deg, #0078ff, #00ffff);
+      color: white;
+    }
+
+    .skill-card .back {
+      background: rgba(255,255,255,0.1);
+      color: #00ffff;
+      transform: rotateY(180deg);
+      flex-direction: column;
+    }
+
+    .skill-card input:checked ~ .front { 
+      transform: rotateY(180deg); 
+    }
+    .skill-card input:checked ~ .back { 
+      transform: rotateY(360deg); 
+    }
+
+    .bar {
+      width: 80%;
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      background: linear-gradient(45deg, #00ffff, #0078ff);
+      border-radius: 10px;
+      width: 0%;
+      animation: fillBar 2s ease forwards;
+    }
+
+    .fill.html { width: 95%; }
+    .fill.css { width: 90%; }
+    .fill.js { width: 80%; }
+    .fill.java { width: 70%; }
+
+    @keyframes fillBar { from { width: 0%; } }
+
+
+    .timeline { 
+    position: relative; 
+    margin-top: 20px; 
+    border-left: 3px solid #00ffff; 
+    padding-left: 25px; 
+  }
+    .edu-item { 
+    margin-bottom: 24px; 
+    position: relative; 
+    padding-left: 6px; 
+  }
+    .edu-item::before { 
+    content: "🎓"; position: absolute; 
+    left: -38px; 
+    top: 2px; color: #00ffff;
+    font-size: 1.1rem; }
+    .edu-item h3 {
+    color: #00ffff; 
+    margin-bottom: 6px; 
+    font-size: 1.05rem; 
+  }
+    .edu-item p { 
+    color: #d9d9d9; 
+    font-size: 0.95rem; 
+  }
+
+
+    #hobbies, #likes { 
+    text-align: center; 
+  }
+    #hobbies p, #likes p { 
+    max-width: 720px; 
+    margin: 0 auto; 
+    color: #ddd; 
+    line-height: 1.7; 
+  }
+
+
+    #contact { 
+    text-align: center;
+   }
+    #contact a {
+      color:#00ffff; 
+      text-decoration:none; }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      background:#111;
+      color:#aaa;
+      border-top:1px solid #00ffff;
+      font-size:0.9rem;
+    }
+
+    @keyframes gentleFloat {
+       from { 
+        transform: translateY(0); } to { transform: translateY(-10px); } }
+    @keyframes slideDown {
+       from { opacity:0; transform:translateY(-40px);} to { opacity:1; transform:translateY(0);} }
+    @keyframes fadeInUp { 
+      from { opacity:0; transform:translateY(40px);} to { opacity:1; transform:translateY(0);} }
+
+
+    @media (max-width:640px) {
+      header { padding: 40px 12px; }
+      header h1 { font-size: 2rem; }
+      section { margin: 40px 16px; padding: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Rakshita’s Portfolio ✨</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#hobbies">Hobbies</a>
+      <a href="#likes">Likes</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <img src="./portfolio image.jpeg" alt="Rakshita Photo" />
+    <p>Hey! I’m <b>Rakshita</b> — a curious learner who loves blending creativity with logic. I’m passionate about design, technology, and building cool stuff.</p>
+    <p>I’m studying at <b>Scaler School of Technology</b>, exploring how computer science and creativity can shape the future. My goal is to learn, experiment, and grow every day.</p>
+  </section>
+
+  <!-- 🌟 Updated Skills Section (CSS-only flip cards) -->
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skills-container">
+      <label class="skill-card">
+        <input type="checkbox" />
+        <div class="front">HTML</div>
+        <div class="back">
+          <p>HTML — 95%</p>
+          <div class="bar"><div class="fill html"></div></div>
+        </div>
+      </label>
+
+      <label class="skill-card">
+        <input type="checkbox" />
+        <div class="front">CSS</div>
+        <div class="back">
+          <p>CSS — 90%</p>
+          <div class="bar"><div class="fill css"></div></div>
+        </div>
+      </label>
+
+      <label class="skill-card">
+        <input type="checkbox" />
+        <div class="front">JavaScript</div>
+        <div class="back">
+          <p>JavaScript — 80%</p>
+          <div class="bar"><div class="fill js"></div></div>
+        </div>
+      </label>
+
+      <label class="skill-card">
+        <input type="checkbox" />
+        <div class="front">Java</div>
+        <div class="back">
+          <p>Java — 70%</p>
+          <div class="bar"><div class="fill java"></div></div>
+        </div>
+      </label>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>My Education</h2>
+    <div class="timeline">
+      <div class="edu-item">
+        <h3>2023 — Ridge School</h3>
+        <p>Completed school-level studies where curiosity and creativity took shape.</p>
+      </div>
+      <div class="edu-item">
+        <h3>2025 — Nine Education</h3>
+        <p>Further studies focused on critical thinking and practical learning.</p>
+      </div>
+      <div class="edu-item">
+        <h3>2029 — Scaler School of Technology</h3>
+        <p>Currently pursuing full-stack development, building a strong foundation in design and tech.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="hobbies">
+    <h2>My Hobbies</h2>
+    <p>Trained classical dancer for 5 years — Bharatanatyam & Kuchipudi. I also enjoy sketching and exploring perspective drawing.</p>
+  </section>
+
+  <section id="likes">
+    <h2>What I Like</h2>
+    <p>I love sketching and exploring the world through perspective drawings — turning ideas into creative visuals 🎨.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Let’s Connect!</h2>
+    <p>📧 <a href="mailto:rasipuramrakshita14@gmail.com" target="_blank">Gmail</a></p>
+    <p>💻 <a href="https://github.com/rakshita25bcs10338-collab" target="_blank">GitHub</a> |
+       🔗 <a href="https://www.linkedin.com/in/rakshita-r-4a51b2368" target="_blank">LinkedIn</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Rakshita | Built with 💙 and creativity ✨</p>
+  </footer>
+</body>
+</html>
